@@ -2,16 +2,16 @@ const model = require("../Models/auth.js");
 
 const authControl = {
   register: (req, res) => {
-    let {first_name, email, password, phone, pin} = req.body
+    let {name, email, password, pin} = req.body
 
-    if(first_name && email && password && phone && pin){
+    if(name && email && password || pin){
 
     model.register(req.body)
-      .then((newBody) => {
+      .then((data) => {
         res.status(201).send({
           success: true,
           message: "Register Success",
-          data: newBody,
+          data: data,
         });
       })
       .catch((err) => {
@@ -28,6 +28,33 @@ const authControl = {
     }
   },
 
+  registerPin: (req, res) => {
+    let {email, pin} = req.body
+
+    model.registerPin(req.body)
+
+    .then((result) => {
+      if (result.affectedRows) {
+        res.status(200).send({
+          success: true,
+          message: "Success Create Pin",
+        });
+      } else {
+        res.status(400).send({
+          success: false,
+          message: "Email Not Found!",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        success: false,
+        message: err.message,
+      });
+    });
+
+  },
+
   login: (req, res) => {
     let {email, password} = req.body
     if(email && password) {
@@ -36,7 +63,8 @@ const authControl = {
         res.status(200).send({
           success: true,
           message: "Login Success!",
-          token: data,
+          data: {role: data.role,
+          token: data.token}
         });
       })
       .catch((err) => {

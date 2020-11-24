@@ -15,8 +15,7 @@ const profileController = {
             return {
               id : result.id_profile,
               photo: result.photo,
-              firstName : result.first_name,
-              last_name : result.last_name,
+              firstName : result.name,
               email : result.email
             }
           });
@@ -38,17 +37,23 @@ const profileController = {
   },
 
   getId: (req, res) => {
-    const { id } = req.params;
 
-    if (id == req.id || req.role == 21) {
-      model
-        .getId(id)
+    let {id} = req.params
+
+      model.getId(id)
         .then((result) => {
           if (result.length) {
+
+            const id = result[0].id_profile
+            const name = result[0].name
+            const email = result[0].email
+            const photo = result[0].photo
+            const phone = result[0].phone
+
             res.status(200).send({
               success: true,
               message: "Success",
-              data: result,
+              data: {id, name, email, photo, phone}
             });
           } else {
             res.status(400).send({
@@ -65,12 +70,6 @@ const profileController = {
             data: [],
           });
         });
-    } else {
-      res.status(403).send({
-        success: false,
-        message: "Not Found",
-      });
-    }
   },
 
   getName: (req, res) => {
@@ -101,20 +100,53 @@ const profileController = {
         });
   },
 
-  patchProfile: (req, res) => {
-    const { id } = req.params;
+  getUserByToken: (req, res) => {
+    const id = req.id
 
-    if (id == req.id || req.role == 21) {
-      const { first_name, last_name, email, password, phone, pin } = req.body
+    model.getId(id)
+    .then((result) => {
+      if (result.length) {
+        res.status(200).send({
+          success: true,
+          message: "Success",
+          data: result,
+        });
+      } else {
+        res.status(400).send({
+          success: false,
+          message: "Id not found",
+          data: [],
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        success: false,
+        message: err.message,
+        data: [],
+      });
+    });
+  },
+
+  patchProfile: (req, res) => {
+    const id = req.id;
+
+      const { name, email, password, phone, pin, device_token } = req.body
 
       const p =req.body
-
+      let newData
 
       bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hashedPassword) { 
 
-         const newData = { ...p, password : hashedPassword}
-         
+
+        if(password){
+          newData = { ...p, password : hashedPassword}
+        } else {
+          newData = p
+        }
+
+
       const data = Object.entries(newData).map((item) => {
         return parseInt(item[1]) > 0
           ? `${item[0]}=${item[1]}`
@@ -123,18 +155,18 @@ const profileController = {
 
       model
         .patchProfile(
-          first_name,
-          last_name,
+          name,
           email,
           phone,
           password,
           pin,
+          device_token,
           id,
           data
         )
 
         .then((result) => {
-          if (first_name || last_name || email || phone || password || pin) {
+          if (name || email || phone || password || pin || device_token) {
             if (result.affectedRows) {
               res.status(200).send({
                 success: true,
@@ -164,12 +196,6 @@ const profileController = {
         });
       })
     })
-    } else {
-      res.status(403).send({
-        success: false,
-        message: "Not Found",
-      });
-    }
 
   },
 
@@ -206,6 +232,85 @@ const profileController = {
     })
   }
 },
+
+  cekPassword: (req, res) => {
+    const { password, realpw} = req.body
+    model.cekPassword(password, realpw)
+    .then((result) => {
+      res.status(200).send({
+        success: true,
+        message: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        success: false,
+        message: err, 
+      });
+    });
+  },
+
+  cekPin: (req, res) => {
+    const { id, pin } = req.body;
+
+      model.cekPin(id, pin)
+        .then((result) => {
+          if (result.length) {
+            res.status(200).send({
+              success: true,
+              message: "Success",
+              data: result,
+            });
+          } else {
+            res.status(400).send({
+              success: false,
+              message: "Wrong!",
+            });
+          }
+        })
+        .catch((err) => {
+          res.status(500).send({
+            success: false,
+            message: "Internal Server Error",
+          });
+        });
+
+  },
+
+	updateToken: (req, res) => {
+    const {device, email} = req.body
+    
+    model.updateToken(device, email)
+    .then((result) => {
+      if (device || email ) {
+        if (result.affectedRows) {
+          res.status(200).send({
+            success: true,
+            message: "Success",
+            data: req.body,
+          });
+        } else {
+          res.status(400).send({
+            success: false,
+            message: "Not found",
+          });
+        }
+      } else {
+        res.status(400).send({
+          success: false,
+          message: "Fields must be filled",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        success: false,
+        message: err.message,
+      });
+    });
+
+	}
+
 };
 
 module.exports = profileController;

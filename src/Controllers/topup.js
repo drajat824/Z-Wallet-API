@@ -1,11 +1,10 @@
 const model = require("../Models/topup.js");
 
 const topupController = {
-  getAll: (req, res) => {
+getAll: (req, res) => {
     const { limit, page } = req.query;
 
-    model
-      .getAll(limit, page)
+    model.getAll(limit, page)
       .then((result) => {
         res.status(200).send({
           success: true,

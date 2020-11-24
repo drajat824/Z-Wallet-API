@@ -13,20 +13,33 @@ const authModel = {
             reject(err);
           }
           const query = "INSERT INTO profile SET ?";
-          db.query(query, newBody, (err, data) => {
+          db.query(query, newBody, (err, result) => {
             if (!err) {
               resolve(newBody);
             } else {
               if(err.code == "ER_DUP_ENTRY") {
-                reject("Email Has Been Used")
+                reject(err)
               } else {
-                reject("Internal Server Error");
+                reject(err);
               }
             }
           });
         });
       });
     });
+  },
+
+  registerPin : (body) => {
+    return new Promise((resolve, reject) => { 
+      const {email, pin} = body
+      db.query (`UPDATE profile SET pin=${pin} WHERE email='${email}'`, (err, result) => {
+        if(err) {
+          reject(new Error(err));
+      } else{
+          resolve(result);
+      }
+      })
+    })
   },
 
   login: (body) => {
@@ -39,7 +52,8 @@ const authModel = {
           reject("Email Salah.");
         } else {
           if (!err) {
-              
+            
+            const role = dataUser.role
             const token = jwt.sign(
               {
                 id: dataUser.id_profile,
@@ -48,6 +62,8 @@ const authModel = {
               },
               process.env.SECRET_KEY
             );
+
+            const hasil = {role, token}
 
             bcrypt.compare(password, dataUser.password, function (err, result) {
               if (err) {
@@ -59,7 +75,7 @@ const authModel = {
                   const sql = "SELECT * FROM profile WHERE password=?";
                   db.query(sql, dataUser.password, (err, data) => {
                     if (!err) {
-                      resolve(token);
+                      resolve(hasil);
                     } else {
                       reject("Password Salah");
                     }
