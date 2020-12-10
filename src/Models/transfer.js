@@ -8,22 +8,6 @@ const transferModel = {
     if (!limit) limit = 99;
     else limit = parseInt(limit);
 
-    if (myRole == 21) {
-      return new Promise((resolve, reject) => {
-        db.query(
-          `SELECT transfer.id_sender, transfer.id_receiver, profile.photo, profile.name ,
-        transfer.amount, profile.balance, transfer.notes, transfer.date FROM profile INNER JOIN transfer ON 
-        profile.id_profile = transfer.id_receiver ORDER BY transfer.date ASC LIMIT ${limit} OFFSET ${(page - 1) * limit}`,
-          (err, result) => {
-            if (!err) {
-              resolve(result);
-            } else {
-              reject(err);
-            }
-          }
-        );
-      });
-    } else {
       return new Promise((resolve, reject) => {
         db.query(
           `SELECT transfer.id_sender, transfer.id_receiver, profile.photo, profile.name,
@@ -39,7 +23,7 @@ const transferModel = {
           }
         );
       });
-    }
+
   },
 
   postTransfer: (id_sender, id_receiver, amount, notes, myId) => {
