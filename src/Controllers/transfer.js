@@ -59,6 +59,8 @@ const transferController = {
 					  message: "ID User To isn't available"
 					})
 
+					const photo_receiver = checkTo[0].photo
+					const name_receiver = checkTo[0].name
 					const currentBalanceFrom = checkFrom[0].balance
 					const currentBalanceTo = checkTo[0].balance
 					if (currentBalanceFrom < amount)
@@ -70,7 +72,7 @@ const transferController = {
 					  await updateBalance({ id: myId, balance: currentBalanceFrom - amount })
 					  await updateBalance({ id: id_receiver, balance: currentBalanceTo + amount })
 				
-					  await model.postTransfer(id_sender, id_receiver, amount, notes, myId)
+					  await model.postTransfer(id_sender, id_receiver, amount, notes, myId, photo_receiver, name_receiver)
 				
 					  res.status(200).json({
 						status: true,

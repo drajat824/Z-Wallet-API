@@ -10,9 +10,9 @@ const transferModel = {
 
       return new Promise((resolve, reject) => {
         db.query(
-          `SELECT transfer.id_sender, transfer.id_receiver, profile.photo, profile.name,
-        transfer.amount, profile.balance, transfer.notes, transfer.date FROM profile INNER JOIN transfer ON 
-        profile.id_profile = transfer.id_receiver WHERE transfer.id_sender = ${myId} ORDER BY transfer.date ASC LIMIT ${limit} 
+          `SELECT transfer.id_sender, profile.photo, profile.name, profile.balance, transfer.id_receiver, transfer.photo_receiver, transfer.name_receiver,
+        transfer.amount, transfer.notes, transfer.date FROM profile INNER JOIN transfer ON 
+        profile.id_profile = transfer.id_sender WHERE transfer.id_sender = ${myId} OR transfer.id_receiver = ${myId} ORDER BY transfer.date ASC LIMIT ${limit} 
         OFFSET ${(page - 1) * limit}`,
           (err, result) => {
             if (!err) {
@@ -26,11 +26,10 @@ const transferModel = {
 
   },
 
-  postTransfer: (id_sender, id_receiver, amount, notes, myId) => {
+  postTransfer: (id_sender, id_receiver, amount, notes, myId, photo_receiver, name_receiver) => {
     return new Promise((resolve, reject) => {
       db.query(
-        `INSERT into transfer SET id_sender = ${myId}, id_receiver =  ${id_receiver}, 
-          amount = ${amount}, notes =' ${notes}'`,
+        `INSERT into transfer SET id_sender = ${myId}, id_receiver =  ${id_receiver}, amount = ${amount}, notes ='${notes}', photo_receiver = '${photo_receiver}', name_receiver = '${name_receiver}'`,
         (err, result) => {
           if (err) {
             reject(err);

@@ -24,7 +24,7 @@ app.get("/", (request, response) => { response.send("Server is running bro!")});
 
 //Running On
 server.listen(8000, () => {console.log(`server running on port 8000`)});
-
+app.use("*", cors());
 const authRoute =  require("./src/Routes/auth.js")
 const profileRoute =  require("./src/Routes/profile.js")
 const topupRoute =  require("./src/Routes/topup.js")
