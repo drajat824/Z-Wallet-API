@@ -58,6 +58,12 @@ const transferController = {
 					  status: false,
 					  message: "ID User To isn't available"
 					})
+					
+					if(myId == id_receiver)
+					return res.status(400).json({
+						status: false,
+						message: "You cannot transfer to yourself"
+					})
 
 					const photo_receiver = checkTo[0].photo
 					const name_receiver = checkTo[0].name
@@ -109,8 +115,9 @@ const transferController = {
 			catch(err){
 				res.status(500).send({
 					success: false,
-					message: err.message,
+					message: err.message
 				});
+				console.log(photo_receiver)
 			}
 	},
 
