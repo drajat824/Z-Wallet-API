@@ -24,8 +24,25 @@ Z-Wallet-API adalah API yang dikembangkan untuk aplikasi Z-Wallet-Mobile, Projec
 ~$ cd Z-Wallet-API
 ~$ npm install
 ~$ node index.js
-``
+```
+
+## API SPECS
+
+- POST `/api/v1/register` Untuk Register
+- POST `/api/v1/login` Untuk Login
+- GET `/api/v1/topup` Untuk menampilkan cara Top Up
+- POST `/api/v1/transfer` Untuk melakukan Transfer
+- GET `/api/v1/transfer` Untuk menampilkan data Transfer
+- GET `/api/v1/transfer?page=1&&limit=2` Untuk menampilkan data Transfer dengan Paginasi
+- GET `/api/v1/transfer/week` Untuk menampilkan data Transfer minggu ini
+- GET `/api/v1/transfer/month` Untuk menampilkan data Transfer bulan ini
+- GET `/api/v1/transfer/today` Untuk menampilkan data Transfer hari ini
+- GET `/api/v1/profile/detail` Untuk menampilkan data User
+- GET `/api/v1/profile/search?name=peter` Untuk menampilkan User berdasarkan nama
+- GET `/api/v1/profile/cekpin` Untuk cek pin User
+- PATCH `/api/v1/profile` Untuk mengubah data User
+- PATCH `/api/v1/upload` Untuk mengubah foto User
 
 ## Sources
 
-hDokumentasi Postman : 
+Dokumentasi Postman : 
