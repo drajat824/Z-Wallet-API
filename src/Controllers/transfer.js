@@ -258,6 +258,37 @@ const transferController = {
 			});
 	},
 
+	getTransferToday: (req, res) => {
+		const myId = req.id;
+		const myRole = req.role;
+
+		const { limit, page } = req.query;
+		model
+			.getTransferToday(limit, page, myId, myRole)
+			.then((result) => {
+				if (result.length) {
+					res.status(200).send({
+						success: true,
+						message: "Success",
+						data: result,
+					});
+				} else {
+					console.log(result)
+					res.status(400).send({
+						success: false,
+						message: "Data Not Found",
+						
+					});
+				}
+			})
+			.catch((err) => {
+				res.status(500).send({
+					success: false,
+					mesage: err.message,
+				});
+			});
+	},
+
 };
 
 module.exports = transferController;

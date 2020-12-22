@@ -4,6 +4,7 @@ const middleware =  require("../Helpers/middleware.js")
 const controller = require("../Controllers/transfer.js");
 
 transferRoute.get("/transfer", middleware, controller.getAll);
+transferRoute.get("/transfer/today", middleware, controller.getTransferToday);
 transferRoute.get("/transfer/week", middleware, controller.getTransferWeek);
 transferRoute.get("/transfer/month", middleware, controller.getTransferMonth);
 transferRoute.patch("/transfer/:id", middleware, controller.patchTransfer);
