@@ -194,7 +194,70 @@ const transferController = {
 				message: "Not Found"
 			});
 		}
-	}
+	},
+
+	getTransferWeek: (req, res) => {
+		const myId = req.id;
+		const myRole = req.role;
+
+		const { limit, page } = req.query;
+		model
+			.getTransferWeek(limit, page, myId, myRole)
+			.then((result) => {
+				if (result.length) {
+					res.status(200).send({
+						success: true,
+						message: "Success",
+						data: result,
+					});
+				} else {
+					console.log(result)
+					res.status(400).send({
+						success: false,
+						message: "Data Not Found",
+						
+					});
+				}
+			})
+			.catch((err) => {
+				res.status(500).send({
+					success: false,
+					mesage: err.message,
+				});
+			});
+	},
+
+	getTransferMonth: (req, res) => {
+		const myId = req.id;
+		const myRole = req.role;
+
+		const { limit, page } = req.query;
+		model
+			.getTransferMonth(limit, page, myId, myRole)
+			.then((result) => {
+				if (result.length) {
+					res.status(200).send({
+						success: true,
+						message: "Success",
+						data: result,
+					});
+				} else {
+					console.log(result)
+					res.status(400).send({
+						success: false,
+						message: "Data Not Found",
+						
+					});
+				}
+			})
+			.catch((err) => {
+				res.status(500).send({
+					success: false,
+					mesage: err.message,
+				});
+			});
+	},
+
 };
 
 module.exports = transferController;
