@@ -191,7 +191,7 @@ const profileController = {
         .catch((err) => {
           res.status(500).send({
             success: false,
-            message: err.message,
+            message: "Internal Server Error",
           });
         });
       })
@@ -305,7 +305,7 @@ const profileController = {
     .catch((err) => {
       res.status(500).send({
         success: false,
-        message: err.message,
+        message: "Internal Server Error",
       });
     });
 

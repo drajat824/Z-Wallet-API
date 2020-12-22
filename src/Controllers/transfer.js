@@ -33,7 +33,7 @@ const transferController = {
 			.catch((err) => {
 				res.status(500).send({
 					success: false,
-					mesage: err.message,
+					message: "Internal Server Error",
 				});
 			});
 	},
@@ -115,7 +115,7 @@ const transferController = {
 			catch(err){
 				res.status(500).send({
 					success: false,
-					message: err.message
+					message: "Internal Server Error",
 				});
 				console.log(photo_receiver)
 			}
@@ -144,7 +144,7 @@ const transferController = {
 				.catch((err) => {
 					res.status(500).send({
 						success: false,
-						message: err.message,
+						message: "Internal Server Error",
 					});
 				});
 		} else {
@@ -222,7 +222,7 @@ const transferController = {
 			.catch((err) => {
 				res.status(500).send({
 					success: false,
-					mesage: err.message,
+					message: "Internal Server Error",
 				});
 			});
 	},
@@ -284,7 +284,7 @@ const transferController = {
 			.catch((err) => {
 				res.status(500).send({
 					success: false,
-					mesage: err.message,
+					message: "Internal Server Error",
 				});
 			});
 	},
