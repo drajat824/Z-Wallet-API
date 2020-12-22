@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2020 at 09:52 AM
+-- Generation Time: Dec 22, 2020 at 02:57 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.23
 
@@ -32,7 +32,7 @@ CREATE TABLE `profile` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT '/default/picture.png',
   `phone` varchar(13) DEFAULT NULL,
   `pin` varchar(6) DEFAULT NULL,
   `balance` int(255) DEFAULT 0,
@@ -46,15 +46,13 @@ CREATE TABLE `profile` (
 --
 
 INSERT INTO `profile` (`id_profile`, `name`, `email`, `password`, `photo`, `phone`, `pin`, `balance`, `verified`, `role`, `device_token`) VALUES
-(1, 'Drajat Fikri Alfianto', 'drajat@gmail.com', '$2b$10$NTXE5eDkU/zCo0jbaKTFzuThyXO.PhbHOq1r6we.HjQ9hRcCou0Su', '1607444426119-profile.jpg', '0895358084317', '111111', 89788, 0, 20, 'cfMr-ecaRe2lsXyfpP6iq3:APA91bGIBIUxgzcqc7nN8UUtZPoFFxzNgcfpW6UXMlFvD7ePq59YK1uUkU7zlOpfzvxTvMhC6z9k20CBIqPFp6mJhA_JX3g4Jms3D_vvOC5u13POt4q3KrKDhyS-rw1LXZ-PQPYc99z-'),
-(2, 'Kipli Saprol', 'kipli@gmail.com', '$2b$10$352hsop1xyXtCMfiaRfQ4Op7QZDI0jG5oJ48NX/UxGN/Ct0.6i1zi', '1606289915303-image-e1b7eae6-a5e5-420a-b927-d6efd31813aa.jpg', NULL, '222222', 2980, 0, 20, ''),
-(3, 'Anya Geraldine', 'anya@gmail.com', '$2b$10$IjhG135sJJMkw/WR7OTo1uUKPQIVFDZCWE8olj2coLURniEKTZP06', '1606145353376-Screenshot_20201123-222802_1.jpg', NULL, '111112', 0, 0, 20, ''),
-(4, 'Peter Parker', 'peter@gmail.com', '$2b$10$KR2Dda3.I6CPHc.tQPGKwuRPIim15na8g3B082Ttimr0tAgXrAziq', NULL, NULL, NULL, 522, 0, 20, NULL),
-(5, 'Jon Bon Jovi', 'jon@gmail.com', '$2b$10$s8lqIsga9lF/5Kum8X2wMuotTDUlDpSk4QwwxEDZ/7nGp/E26y2Gy', NULL, NULL, NULL, 6620, 0, 20, NULL),
-(6, 'Roma Irama', 'roma@gmail.com', '$2b$10$V7hrKUvKCDdq401mFx8js.wvuOO34L0Ksi6hgYz9iayR.mtlJ/lNS', NULL, NULL, NULL, 22, 0, 20, NULL),
-(7, 'Popuri', 'popuri@gmail.com', '$2b$10$IfAczDZdMlySeP8Ij4ZzyuyZoB2VnRIS.FORWg5z55JiFZO6A6Cle', '1606238489465-P_20200912_163404.jpg', NULL, NULL, 2666, 0, 20, ''),
-(8, 'Karen', 'karen@gmail.com', '$2b$10$rxK/ITH.P9A3zC/niDpYbOpvtYEkfVBgR3YTaK67sZzXxHoXouQRa', '1606238218832-P_20201122_074252.jpg', NULL, NULL, 234, 0, 20, ''),
-(66, 'werdan', 'werdan@gmail.com', '$2b$10$/8EeEN/TjiW2pZ7tR.FeXuzY9unaKcFVn0kgMOjeHTTezUM6wflii', NULL, NULL, '111111', 0, 0, 20, NULL);
+(1, 'Drajat Fikri Alfianto', 'drajat@gmail.com', '$2b$10$NTXE5eDkU/zCo0jbaKTFzuThyXO.PhbHOq1r6we.HjQ9hRcCou0Su', '1607626142250-6TmQoM902D.jpg', '0895358084317', '111111', 89036, 0, 20, 'eaOr9neyTpqytyjzKLe_pz:APA91bG0vaUVgRY0dd9s4ULoMW60PPSNRwOd-0IaI33EvmNCHGgvjM9jQUEk9Ct7yCG-_6ybBIFlLc0PY5bV2Y-KRUZpByh9Ge6j442NOcPir88DqetQyaOwhBYIBoXvElxW7OpoYDTn'),
+(2, 'Kipli Saprol', 'kipli@gmail.com', '$2b$10$352hsop1xyXtCMfiaRfQ4Op7QZDI0jG5oJ48NX/UxGN/Ct0.6i1zi', '/default/picture.png', NULL, '222222', 4213, 0, 20, 'eaOr9neyTpqytyjzKLe_pz:APA91bG0vaUVgRY0dd9s4ULoMW60PPSNRwOd-0IaI33EvmNCHGgvjM9jQUEk9Ct7yCG-_6ybBIFlLc0PY5bV2Y-KRUZpByh9Ge6j442NOcPir88DqetQyaOwhBYIBoXvElxW7OpoYDTn'),
+(4, 'Peter Parker', 'peter@gmail.com', '$2b$10$KR2Dda3.I6CPHc.tQPGKwuRPIim15na8g3B082Ttimr0tAgXrAziq', '/default/picture.png', NULL, NULL, 1755, 0, 20, NULL),
+(5, 'Jon Bon Jovi', 'jon@gmail.com', '$2b$10$s8lqIsga9lF/5Kum8X2wMuotTDUlDpSk4QwwxEDZ/7nGp/E26y2Gy', '/default/picture.png', NULL, NULL, 6642, 0, 20, NULL),
+(6, 'Roma Irama', 'roma@gmail.com', '$2b$10$V7hrKUvKCDdq401mFx8js.wvuOO34L0Ksi6hgYz9iayR.mtlJ/lNS', '/default/picture.png', NULL, NULL, 22, 0, 20, NULL),
+(7, 'Popuri', 'popuri@gmail.com', '$2b$10$IfAczDZdMlySeP8Ij4ZzyuyZoB2VnRIS.FORWg5z55JiFZO6A6Cle', '/default/picture.png', NULL, NULL, 2691, 0, 20, ''),
+(8, 'Karen', 'karen@gmail.com', '$2b$10$rxK/ITH.P9A3zC/niDpYbOpvtYEkfVBgR3YTaK67sZzXxHoXouQRa', '/default/picture.png', NULL, NULL, 234, 0, 20, '');
 
 -- --------------------------------------------------------
 
@@ -91,25 +89,22 @@ INSERT INTO `topup` (`id`, `number`, `step`) VALUES
 CREATE TABLE `transfer` (
   `id_sender` int(20) NOT NULL,
   `id_receiver` int(20) NOT NULL,
+  `photo_receiver` varchar(50) NOT NULL,
+  `name_receiver` varchar(100) NOT NULL,
   `id_transfer` int(20) NOT NULL,
   `amount` int(255) NOT NULL,
   `notes` varchar(255) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
+  `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `transfer`
 --
 
-INSERT INTO `transfer` (`id_sender`, `id_receiver`, `id_transfer`, `amount`, `notes`, `date`) VALUES
-(1, 3, 120, 211, ' ppp', '2020-12-10'),
-(1, 7, 121, 1230, ' qwert', '2020-12-10'),
-(1, 7, 122, 1230, ' qwert', '2020-12-10'),
-(3, 5, 123, 6593, ' qwer', '2020-12-10'),
-(3, 5, 124, 6, ' q', '2020-12-10'),
-(3, 6, 125, 0, ' qw', '2020-12-10'),
-(1, 8, 126, 12, ' qq', '2020-12-10'),
-(3, 1, 127, 0, ' qwe', '2020-12-10');
+INSERT INTO `transfer` (`id_sender`, `id_receiver`, `photo_receiver`, `name_receiver`, `id_transfer`, `amount`, `notes`, `date`) VALUES
+(1, 2, '/default/picture.png', 'Peter Parker', 247, 1233, 'ppp', '2020-11-01 11:41:13'),
+(1, 2, '/default/picture.png', 'Kipli Saprol', 248, 1233, 'ppp', '2020-12-22 11:30:11'),
+(2, 1, '/default/picture.png', 'Kipli Saprol', 249, 1233, 'ppp', '2020-12-22 09:31:41');
 
 --
 -- Indexes for dumped tables
@@ -142,7 +137,7 @@ ALTER TABLE `transfer`
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `id_profile` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_profile` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `topup`
@@ -154,7 +149,7 @@ ALTER TABLE `topup`
 -- AUTO_INCREMENT for table `transfer`
 --
 ALTER TABLE `transfer`
-  MODIFY `id_transfer` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `id_transfer` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
