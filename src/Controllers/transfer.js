@@ -23,8 +23,9 @@ const transferController = {
 					});
 				} else {
 					console.log(result)
-					res.status(400).send({
+					res.status(200).send({
 						success: false,
+						data: [],
 						message: "Data Not Found",
 						
 					});
@@ -212,8 +213,9 @@ const transferController = {
 					});
 				} else {
 					console.log(result)
-					res.status(400).send({
+					res.status(200).send({
 						success: false,
+						data: [],
 						message: "Data Not Found",
 						
 					});
@@ -243,8 +245,9 @@ const transferController = {
 					});
 				} else {
 					console.log(result)
-					res.status(400).send({
+					res.status(200).send({
 						success: false,
+						data: [],
 						message: "Data Not Found",
 						
 					});
@@ -274,8 +277,9 @@ const transferController = {
 					});
 				} else {
 					console.log(result)
-					res.status(400).send({
+					res.status(200).send({
 						success: false,
+						data: [],
 						message: "Data Not Found",
 						
 					});
