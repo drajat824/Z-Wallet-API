@@ -12,7 +12,7 @@ const transferModel = {
         db.query(
           `SELECT transfer.id_sender, profile.photo, profile.name, profile.balance, transfer.id_receiver, transfer.photo_receiver, transfer.name_receiver,
         transfer.amount, transfer.notes, transfer.date FROM profile INNER JOIN transfer ON 
-        profile.id_profile = transfer.id_sender WHERE transfer.id_sender = ${myId} OR transfer.id_receiver = ${myId} ORDER BY transfer.date ASC LIMIT ${limit} 
+        profile.id_profile = transfer.id_sender WHERE transfer.id_sender = ${myId} OR transfer.id_receiver = ${myId} ORDER BY transfer.date DESC LIMIT ${limit} 
         OFFSET ${(page - 1) * limit}`,
           (err, result) => {
             if (!err) {
@@ -37,7 +37,7 @@ const transferModel = {
         db.query(
           `SELECT transfer.id_sender, profile.photo, profile.name, profile.balance, transfer.id_receiver, transfer.photo_receiver, transfer.name_receiver,
         transfer.amount, transfer.notes, transfer.date FROM profile INNER JOIN transfer ON 
-        profile.id_profile = transfer.id_sender WHERE (transfer.id_sender = ${myId} OR transfer.id_receiver = ${myId}) AND YEARWEEK(transfer.date, 1) = YEARWEEK(CURDATE(), 1) ORDER BY transfer.date ASC LIMIT ${limit} 
+        profile.id_profile = transfer.id_sender WHERE (transfer.id_sender = ${myId} OR transfer.id_receiver = ${myId}) AND YEARWEEK(transfer.date, 1) = YEARWEEK(CURDATE(), 1) ORDER BY transfer.date DESC LIMIT ${limit} 
         OFFSET ${(page - 1) * limit}`,
           (err, result) => {
             if (!err) {
@@ -61,7 +61,7 @@ const transferModel = {
         db.query(
           `SELECT transfer.id_sender, profile.photo, profile.name, profile.balance, transfer.id_receiver, transfer.photo_receiver, transfer.name_receiver,
         transfer.amount, transfer.notes, transfer.date FROM profile INNER JOIN transfer ON 
-        profile.id_profile = transfer.id_sender WHERE (transfer.id_sender = ${myId} OR transfer.id_receiver = ${myId}) AND MONTH(transfer.date) = MONTH(CURDATE()) ORDER BY transfer.date ASC LIMIT ${limit} 
+        profile.id_profile = transfer.id_sender WHERE (transfer.id_sender = ${myId} OR transfer.id_receiver = ${myId}) AND MONTH(transfer.date) = MONTH(CURDATE()) ORDER BY transfer.date DESC LIMIT ${limit} 
         OFFSET ${(page - 1) * limit}`,
           (err, result) => {
             if (!err) {
@@ -85,7 +85,7 @@ const transferModel = {
         db.query(
           `SELECT transfer.id_sender, profile.photo, profile.name, profile.balance, transfer.id_receiver, transfer.photo_receiver, transfer.name_receiver,
         transfer.amount, transfer.notes, transfer.date FROM profile INNER JOIN transfer ON 
-        profile.id_profile = transfer.id_sender WHERE (transfer.id_sender = ${myId} OR transfer.id_receiver = ${myId}) AND DATE(transfer.date) = CURDATE() ORDER BY transfer.date ASC LIMIT ${limit} 
+        profile.id_profile = transfer.id_sender WHERE (transfer.id_sender = ${myId} OR transfer.id_receiver = ${myId}) AND DATE(transfer.date) = CURDATE() ORDER BY transfer.date DESC LIMIT ${limit} 
         OFFSET ${(page - 1) * limit}`,
           (err, result) => {
             if (!err) {
