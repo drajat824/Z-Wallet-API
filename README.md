@@ -4,6 +4,7 @@
 
 Z-Wallet-API adalah API yang dikembangkan untuk aplikasi Z-Wallet-Mobile, Project ini dibangun dengan Node-ExpressJs
 
+Link API : http://103.123.63.223:8000/
 
 ## Technologies
 
